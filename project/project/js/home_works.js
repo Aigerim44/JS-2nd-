@@ -15,22 +15,38 @@ gmailButton.addEventListener('click', () => {
 })
 
 
-
+//MOVE BLOCK
 const childBlock = document.querySelector('.child_block')
-// const duration = 1000
-// const distance = 400
+const parentBlock = document.querySelector('.parent_block')
+const mainWidth = parentBlock.offsetWidth - childBlock.offsetWidth
+const mainHeight = parentBlock.offsetHeight - childBlock.offsetHeight
 
-let position = 0;
-const increment = () => {
-    position++
-    if (position > 449) return;
-    childBlock.style.left = position + 'px';
-    animation()
+let positionX = 0
+let positionY = 0
+let positionXNew = positionY + mainWidth
+let positionYNew
+const moveBlock = () => {
+    if (positionX < mainWidth){
+        positionX++
+        childBlock.style.left = `${positionX}px`
+        requestAnimationFrame(moveBlock)
+    }else if (positionX >= mainWidth && positionY < mainHeight){
+        positionY++
+        childBlock.style.top = `${positionY}px`
+        requestAnimationFrame(moveBlock)
+    }else if (positionX > 0 && positionY === mainHeight - 50) {
+        // Двигаем блок влево
+        positionX--;
+        childBlock.style.left = `${positionX}px`;
+    } else if (positionX === 0 && positionY > 0) {
+        // Двигаем блок вверх
+        positionY--;
+        childBlock.style.top = `${positionY}px`;
+    }
 }
-const animation = () => {
-    setTimeout(increment, 10)
-}
-animation()
+moveBlock()
+
+
 
 
 // const startAnimation = (duration, callback) => {
@@ -53,6 +69,32 @@ animation()
 // }
 // startAnimation()
 
+const zero = document.getElementById('seconds')
+const stopButton = document.getElementById('stop')
+const resetButton = document.getElementById('reset')
+const startButton = document.getElementById('start')
+const timeBlock = document.getElementsByClassName( 'time_block')
+let count = 0
+let interval
+
+const stopwatch = () => {
+    count++
+    zero.innerHTML = count
+}
+
+startButton.addEventListener('click', () => {
+    clearInterval(interval)
+    interval = setInterval(stopwatch, 1000)
+
+})
+stopButton.addEventListener('click', () => {
+    clearInterval(interval)
+})
+resetButton.addEventListener('click', () => {
+    clearInterval(interval)
+    count = 0
+    zero.innerHTML = '0'
+})
 
 
 
