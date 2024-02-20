@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Vladimir Lenin",
+    "age": 54,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Lenin_in_1920_%28cropped%29.jpg"
+  },
+  {
+    "name": "Joseph Stalin",
+    "age": 75,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Joseph_Stalin%2C_1950_%28cropped%29.jpg/800px-Joseph_Stalin%2C_1950_%28cropped%29.jpg"
+  },
+  {
+    "name": "Nikita Khrushchev ",
+    "age": 77,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Nikita_Khruschev_%28cropped%29.jpg/220px-Nikita_Khruschev_%28cropped%29.jpg"
+  },
+  {
+    "name": "Leonid Brezhnev",
+    "age": 76,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Staatshoofden%2C_portretten%2C_Bestanddeelnr_925-6564_%28cropped%29%28d%29.jpg/220px-Staatshoofden%2C_portretten%2C_Bestanddeelnr_925-6564_%28cropped%29%28d%29.jpg"
+  }
+]
