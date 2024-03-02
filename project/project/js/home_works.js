@@ -18,33 +18,29 @@ gmailButton.addEventListener('click', () => {
 //MOVE BLOCK
 const childBlock = document.querySelector('.child_block')
 const parentBlock = document.querySelector('.parent_block')
-const mainWidth = parentBlock.offsetWidth - childBlock.offsetWidth
-const mainHeight = parentBlock.offsetHeight - childBlock.offsetHeight
 
-let positionX = 0
-let positionY = 0
-let positionXNew = positionY + mainWidth
-let positionYNew
+
+let positionX = 0;
+let positionY = 0;
+const parentWidthFree = 449;
+const moveSpeedChildBlock = 1;
 const moveBlock = () => {
-    if (positionX < mainWidth){
+    if(positionX < parentWidthFree && positionY === 0){
         positionX++
         childBlock.style.left = `${positionX}px`
-        requestAnimationFrame(moveBlock)
-    }else if (positionX >= mainWidth && positionY < mainHeight){
+    }else if(positionX >= parentWidthFree && positionY < parentWidthFree ){
         positionY++
         childBlock.style.top = `${positionY}px`
-        requestAnimationFrame(moveBlock)
-    }else if (positionX > 0 && positionY === mainHeight - 50) {
-        // Двигаем блок влево
+    }else if(positionX > 0 && positionY === parentWidthFree){
         positionX--;
-        childBlock.style.left = `${positionX}px`;
-    } else if (positionX === 0 && positionY > 0) {
-        // Двигаем блок вверх
+        childBlock.style.left = `${positionX}px`
+    }else if (positionX === 0 && positionY > 0) {
         positionY--;
-        childBlock.style.top = `${positionY}px`;
+        childBlock.style.top = `${positionY}px`
     }
+    setTimeout(moveBlock, moveSpeedChildBlock);
 }
-moveBlock()
+moveBlock();
 
 
 
