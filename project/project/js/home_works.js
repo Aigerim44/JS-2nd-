@@ -1,96 +1,31 @@
-// G-MAIL //
+//GMAIL BLOCK---------------------------------------------------------------------------------
 const gmailInput = document.querySelector('#gmail_input')
 const gmailButton = document.querySelector('#gmail_button')
 const gmailResult = document.querySelector('#gmail_result')
 
 const regExp = /\w@gmail.com$/
-gmailButton.addEventListener('click', () => {
+
+gmailButton.onclick = () => {
     if (regExp.test(gmailInput.value)){
-        gmailResult.innerHTML = 'ok'
+        gmailResult.innerHTML = 'OK'
         gmailResult.style.color = 'green'
-    }else {
-        gmailResult.innerHTML = 'not ok'
+    }else{
+        gmailResult.innerHTML = 'NOT OK'
         gmailResult.style.color = 'red'
     }
-})
+}
 
-
-//MOVE BLOCK
+//MOVE BLOCK----------------------------------------------------------------------------------
 const childBlock = document.querySelector('.child_block')
 const parentBlock = document.querySelector('.parent_block')
+let position = 0
 
-
-let positionX = 0;
-let positionY = 0;
-const parentWidthFree = 449;
-const moveSpeedChildBlock = 1;
-const moveBlock = () => {
-    if(positionX < parentWidthFree && positionY === 0){
-        positionX++
-        childBlock.style.left = `${positionX}px`
-    }else if(positionX >= parentWidthFree && positionY < parentWidthFree ){
-        positionY++
-        childBlock.style.top = `${positionY}px`
-    }else if(positionX > 0 && positionY === parentWidthFree){
-        positionX--;
-        childBlock.style.left = `${positionX}px`
-    }else if (positionX === 0 && positionY > 0) {
-        positionY--;
-        childBlock.style.top = `${positionY}px`
+const movingBlock = () => {
+    if (position < 449){
+        position++
+        childBlock.style.left = `${position}px`
+        requestAnimationFrame(movingBlock)
     }
-    setTimeout(moveBlock, moveSpeedChildBlock);
-}
-moveBlock();
-
-
-
-
-// const startAnimation = (duration, callback) => {
-//     let startAnimation = null
-//
-//     requestAnimFrame(function measure(time) {
-//         if (!startAnimation){
-//             startAnimation = time.getTime()
-//         }
-//
-//         const progress = (50 +(time - startAnimation) / duration )
-//         const translate = progress * distance
-//
-//         childBlock.style.transform = `translateX(${translate}px`
-//
-//         if (progress < 1){
-//             requestAnimFrame(measure)
-//         }
-//     })
-// }
-// startAnimation()
-
-const zero = document.getElementById('seconds')
-const stopButton = document.getElementById('stop')
-const resetButton = document.getElementById('reset')
-const startButton = document.getElementById('start')
-const timeBlock = document.getElementsByClassName( 'time_block')
-let count = 0
-let interval
-
-const stopwatch = () => {
-    count++
-    zero.innerHTML = count
 }
 
-startButton.addEventListener('click', () => {
-    clearInterval(interval)
-    interval = setInterval(stopwatch, 1000)
-
-})
-stopButton.addEventListener('click', () => {
-    clearInterval(interval)
-})
-resetButton.addEventListener('click', () => {
-    clearInterval(interval)
-    count = 0
-    zero.innerHTML = '0'
-})
-
-
-
+movingBlock()
