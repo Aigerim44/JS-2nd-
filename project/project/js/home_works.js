@@ -39,13 +39,9 @@ let positionX = 0
 let positionY = 0
 const maxOffsetWidth = parentBlock.offsetWidth - childBlock.offsetWidth
 const maxOffsetHeight = parentBlock.offsetHeight - childBlock.offsetHeight
-const minOffsetWidth = parentBlock.offsetWidth - parentBlock.offsetWidth
-const minOffsetHeight = parentBlock.offsetHeight - parentBlock.offsetHeight
-const width = 449
-const height = 449
 
 const moveBlock = () => {
-    if (positionX < maxOffsetWidth && positionY === minOffsetHeight){
+    if (positionX < maxOffsetWidth && positionY === 0){
        positionX++
        childBlock.style.left = `${positionX}px`
         // requestAnimationFrame(moveBlock)
@@ -55,11 +51,11 @@ const moveBlock = () => {
         childBlock.style.top = `${positionY}px`
         // requestAnimationFrame(moveBlock)
         setTimeout(moveBlock, 1)
-    }else if (positionX >= minOffsetWidth && positionY <= maxOffsetHeight) {
+    }else if (positionX >= 0 && positionY <= maxOffsetHeight) {
         positionX--
         childBlock.style.left = `${positionX}px`
         setTimeout(moveBlock, 1)
-    }else if (positionX <= minOffsetWidth && positionY > minOffsetHeight) {
+    }else if (positionX <= 0 && positionY > 0) {
         positionY--
         childBlock.style.top = `${positionY}px`
         setTimeout(moveBlock, 1)
@@ -68,7 +64,7 @@ const moveBlock = () => {
 moveBlock()
 
 
-//MOVE BLOCK----------------------------------------------------------------------------------
+//STOPWATCH----------------------------------------------------------------------------------
 const startButton = document.querySelector('#start')
 const stopButton = document.querySelector('#stop')
 const resetButton = document.querySelector('#reset')
