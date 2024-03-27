@@ -124,6 +124,78 @@ converter(usdInput, somInput, eurInput, rubInput,'usd')
 converter(eurInput, somInput, usdInput, rubInput, 'eur')
 converter(rubInput, somInput, eurInput, usdInput, 'rub')
 
+//CARD SWITCHER-------------------------------------------------------------------------
+const cardBlock = document.querySelector('.card')
+const btnPrev = document.querySelector('#btn-prev')
+const btnNext = document.querySelector('#btn-next')
+//
+// let count = 0
+// const request = () => {
+//     fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             cardBlock.innerHTML = `
+//             <p>${data.title}</p>
+//             <p style="color: ${data.completed ? ' green' : 'red'}">${data.completed}</p>
+//             <span>${data.id}</span>
+//             `
+//         })
+// }
+
+// btnNext.onclick = () => {
+//     count++
+//     if (count > 200){
+//         count = 1
+//     }
+//     request()
+// }
+// btnPrev.onclick = () => {
+//     count--
+//     if (count < 1){
+//         count = 200
+//     }
+//     request()
+// }
+
+const BASE_URL = `https://jsonplaceholder.typicode.com/todos`
+let limit = 1
+let page = 1
+
+const renderData = (data) => {
+    cardBlock.innerHTML = ''
+    data.forEach(item => {
+        const newElement = document.createElement('div')
+        newElement.innerHTML = `
+           <p>${item.title}</p>               
+           <p style="color: ${item.completed ? 'green' :'red'}">${item.completed}</p>              
+            <span>${item.id}</span>
+        `
+        cardBlock.appendChild(newElement)
+    })
+}
+const getData = () => {
+    fetch(`${BASE_URL}?_limit=${limit}&_page=${page}`)
+        .then(response => response.json())
+        .then(data => renderData(data))
+}
+getData()
+
+btnNext.onclick = () => {
+    page++
+    if (page > 200){
+        page = 1
+    }
+    getData()
+}
+btnPrev.onclick = () => {
+    page--
+    if (page < 1){
+        page = 200
+    }
+    getData()
+}
+
+
 
 
 
