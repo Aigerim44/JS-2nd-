@@ -83,6 +83,7 @@ const converter = (element, targetElement, secondElement, thirdElement, current)
         request.open('GET', '../data/converter.json')
         request.setRequestHeader('Content-type', 'application/json' )
         request.send()
+            //переписать
 
         request.onload = () => {
             const data = JSON.parse(request.response)
@@ -140,7 +141,7 @@ const btnNext = document.querySelector('#btn-next')
 //             <span>${data.id}</span>
 //             `
 //         })
-// }
+// }ПЕРЕПИСАТЬ
 
 // btnNext.onclick = () => {
 //     count++
@@ -180,6 +181,8 @@ const getData = () => {
 }
 getData()
 
+//ПЕРЕПИСАТЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬ
+
 btnNext.onclick = () => {
     page++
     if (page > 200){
@@ -196,9 +199,28 @@ btnPrev.onclick = () => {
 }
 
 
+//WEATHER-----------------------------------------------------------------------
+const searchInput = document.querySelector('.cityName')
+const city = document.querySelector('.city')
+const temp = document.querySelector('.temp')
 
+const API_KEY = 'e417df62e04d3b1b111abeab19cea714'
+const URL = 'http://api.openweathermap.org/data/2.5/weather'
+const citySearch = () => {
+    searchInput.oninput = async (event) => {
+        try{
+            const response = await fetch(`${URL}?q=${event.target.value}&appid=${API_KEY}`)
+            const data = await response.json()
+            city .innerHTML = data.name ? data.name : 'Город не найден...'
+            temp.innerHTML = data.main?.temp ? Math.round(data.main.temp - 273) + '&deg;C' : '...'
+        }catch (e) {
+            console.log(error)
+        }
+    }
+}
+citySearch()
 
-
+//QUERY PARAMS - параметры запроса
 
 
 

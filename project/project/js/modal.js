@@ -22,6 +22,22 @@ modal.onclick = (event) => {
     closeModal()
 }
 
+setTimeout(() => {
+    openModal()
+}, 10000)
+
+
+//SCROLL MODAL WINDOW
+const scrollModal = () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        openModal()
+        window.removeEventListener('scroll', scrollModal)
+    }
+}
+window.onscroll = () => {
+    scrollModal()
+}
+
 //POST DATA--------------------------------------------------------------
 
 const formElement = document.querySelector('form')
